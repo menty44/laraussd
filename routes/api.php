@@ -19,17 +19,24 @@ use Illuminate\Http\Request;
 
 // get list of tasks
 Route::get('/accounts','AccountsController@index');
+
 // get specific task
 Route::get('/accounts/{id}','AccountsController@show');
+
 // delete a task
 Route::delete('accounts/{id}','AccountsController@destroy');
+
 // update existing task
 Route::put('accounts','AccountsController@store');
+
 // create new task
 Route::post('accounts','AccountsController@store');
 
 // get list of balance
-Route::get('/accounts','AccountsController@balance');
+Route::get('/balance','AccountsController@balance');
 
 // get list of balance by id
-Route::get('/accounts','AccountsController@show');
+Route::get('/balancebyid/{id}','AccountsController@balancebyid');
+
+// get list of balance by id
+Route::get('/deposit','AccountsController@depositstore');

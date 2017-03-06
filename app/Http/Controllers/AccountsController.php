@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use EllipseSynergie\ApiResponse\Contracts\Response;
 use App\Account;
-//use App\Transformer\TaskTransformer;
+use App\Transformer\DepositTransformer;
 use App\Transformer\AccountTransformer;
+use App\Transformer\BalanceTransformer;
 
 
 class AccountsController extends Controller
@@ -23,7 +24,8 @@ class AccountsController extends Controller
     public function index()
     {
         //Get all task
-        $accounts = Account::paginate(15);
+  $accounts = Account::paginate(15);
+
         // Return a collection of $task with pagination
         return $this->response->withPaginator($accounts, new  AccountTransformer());
     }
@@ -57,6 +59,7 @@ class AccountsController extends Controller
 
     public function store(Request $request)  {
         if ($request->isMethod('put')) {
+
             //Get the task
             $account = Account::find($request->account_id);
             if (!$account) {
@@ -73,6 +76,53 @@ class AccountsController extends Controller
 
         if($account->save()) {
             return $this->response->withItem($account, new  AccountTransformer());
+        } else {
+             return $this->response->errorInternalError('Could not updated/created a Account');
+        }
+
+    }
+
+    public function balance()
+    {
+        //Get all balance
+        $accounts = Account::paginate(15);
+
+        // Return a collection of $balance with pagination
+        return $this->response->withPaginator($accounts, new  BalanceTransformer());
+    }
+
+    public function balancebyid($id)
+    {
+        //Get the balance
+        $account = Account::find($id);
+        if (!$account) {
+            return $this->response->errorNotFound('Balance Not Found');
+        }
+        // Return single balance
+        return $this->response->withItem($account, new  BalanceTransformer());
+    }
+
+    public function depositstore(Request $request)  {
+        if ($request->isMethod('put')) {
+
+            //Get the deposit by id
+            $account = Account::find($request->account_id);
+            if (!$account) {
+                return $this->response->errorNotFound('Account Not Found');
+            }
+        } else {
+            $account = new Account;
+        }
+
+        $account->id = $request->input('account_id');
+        //$account->name = $request->input('name');
+        $account->balance = $request->input('balance');
+
+        //$request->user()->id;
+        $account->id =  1;
+
+        if($account->save()) {
+            return $this->response->withItem($account, new  DepositTransformer());
         } else {
              return $this->response->errorInternalError('Could not updated/created a Account');
         }
