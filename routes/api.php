@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
+#developed by oluoch 0720106420
+
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:api');
@@ -44,5 +46,14 @@ Route::post('/deposit','AccountsController@depositstore');
 // get list of test
 Route::get('/test','AccountsController@test');
 
+// get list of test
+Route::get('/test1','AccountsController@test1');
+
+// get list of test
+Route::get('/test1/{id} ','AccountsController@test1');
+
 // deposit by id
 Route::put('/deposit/{id}','AccountsController@testupdate');
+
+//withdraw Withdrawal
+Route::put('/withdrawal/{id}','AccountsController@withdrawal');

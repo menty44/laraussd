@@ -136,28 +136,80 @@ class AccountsController extends Controller
     return Account::all();
 }
 
+public function test1($id)
+{
+
+  //$someJSON = DB::select('SELECT * FROM accounts WHERE balance = ?' , ['45']);
+  $someJSON = DB::select('SELECT balance FROM accounts WHERE id = ?',  [$id]);
+  // Convert JSON string to Array
+  $someArray = json_decode(json_encode($someJSON), true);
+  print_r($someArray);        // Dump all data of the Array
+  echo "";
+  echo "";
+  echo "";
+  echo $someArray[0]["balance"]; // Access Array data
+  //echo $someArray[0]["type"]; // Access Array data
+  //echo $someArray[0]["notransdep"]; // Access Array data
+
+
+}
+
 public function testupdate($id)
     {
         $input = Input::json();
         $account = Account::findOrFail($id);
         //$fred = $account = DB::table('accounts')->where('id', $id)->value('balance');
-        $account->balance = $input->get('balance');
+
         //$account->description = $input->get('description');
         //$account->location_id = $input->get('location_id');
 
-        if ($input->get('balance') > 150000) {
-          # code...
-          return response("Cannot exceed $150k Transaction Per day : " , 412 );
-        } else if ($input->get('balance') > 4000) {
-          # code...
-          return response("Cannot exceed $40k Per Transaction  : " , 412 );
-        }{
-          # code...
-          $account->save();
-          return response($account, 200)
-              ->header('Content-Type', 'application/json');
+
+        //print_r($someArray);        // Dump all data of the Array
+        //$one =$someArray[1]["balance"]; // Access Array data
+        //$two =$someArray[1]["type"]; // Access Array data
+        $someJSON1 = DB::select('SELECT balance, notransdep FROM accounts WHERE id = ?',  [$id]);
+
+        //changing json array to json object so that you may be able to parse the parameters
+        $someArray1 = json_decode(json_encode($someJSON1), true);
+
+        // Access Array data
+        $someArray1[0]["balance"];
+
+        $someJSON = DB::select('SELECT * FROM accounts WHERE balance = ?' , [$someArray1[0]["balance"]]);
+
+        //changing json array to json object so that you may be able to parse the parameters
+        $someArray = json_decode(json_encode($someJSON), true);
+
+        // Access Array data
+        $someArray[0]["balance"];
+        $someArray[0]["notransdep"];
+
+        //get the http put parameter
+        $account->balance = $input->get('balance');
+
+        $account2 = $account->balance = $input->get('balance') + $someArray[0]["balance"];
+
+        # if less or equal to 40000 success and persist in the database
+        while ($input->get('balance') <= 40000) {
+
+
+              //Maximum Limit per day variable
+              $num = "150000";
+
+              //Account limit Variable
+              $lim = "4";
+
+              if($someArray[0]["notransdep"] =< $lim){
+
+                $account->save();
+                return $this->response->withItem($account, new  DepositTransformer());
+              }else {
+                # Deposit failure
+                return $this->response->errorNotFound('Deposit not made Excess balance or Deposit count is more than 5');
+              }
+            }
+              # Deposit failure
+              return $this->response->errorNotFound('Deposit not made, Excess Deposit amount ');
+
+          }
         }
-
-
-    }
-}
