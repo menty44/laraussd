@@ -9,6 +9,8 @@ use App\Account;
 use App\Transformer\DepositTransformer;
 use App\Transformer\AccountTransformer;
 use App\Transformer\BalanceTransformer;
+use Illuminate\Support\Facades\Input;
+use DB;
 
 
 class AccountsController extends Controller
@@ -126,6 +128,36 @@ class AccountsController extends Controller
         } else {
              return $this->response->errorInternalError('Could not updated/created a Account');
         }
+
+    }
+
+    public function test()
+    {
+    return Account::all();
+}
+
+public function testupdate($id)
+    {
+        $input = Input::json();
+        $account = Account::findOrFail($id);
+        //$fred = $account = DB::table('accounts')->where('id', $id)->value('balance');
+        $account->balance = $input->get('balance');
+        //$account->description = $input->get('description');
+        //$account->location_id = $input->get('location_id');
+
+        if ($input->get('balance') > 150000) {
+          # code...
+          return response("Cannot exceed $150k Transaction Per day : " , 412 );
+        } else if ($input->get('balance') > 4000) {
+          # code...
+          return response("Cannot exceed $40k Per Transaction  : " , 412 );
+        }{
+          # code...
+          $account->save();
+          return response($account, 200)
+              ->header('Content-Type', 'application/json');
+        }
+
 
     }
 }

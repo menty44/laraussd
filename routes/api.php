@@ -40,3 +40,9 @@ Route::get('/balancebyid/{id}','AccountsController@balancebyid');
 
 // deposit
 Route::post('/deposit','AccountsController@depositstore');
+
+// get list of test
+Route::get('/test','AccountsController@test');
+
+// deposit by id
+Route::put('/deposit/{id}','AccountsController@testupdate');
