@@ -103,22 +103,22 @@ class AccountsController extends Controller
     }
 
     public function depositstore(Request $request)  {
-        if ($request->isMethod('put')) {
+        if ($request->isMethod('post')) {
 
             //Get the deposit by id
             $account = Account::find($request->account_id);
             if (!$account) {
-                return $this->response->errorNotFound('Account Not Found');
+                return $this->response->errorNotFound('Balance Not Found');
             }
         } else {
             $account = new Account;
         }
 
-        $account->id = $request->input('account_id');
+        $account->id = $request->input('id');
         //$account->name = $request->input('name');
         $account->balance = $request->input('balance');
 
-        //$request->user()->id;
+        $request->user()->id;
         $account->id =  1;
 
         if($account->save()) {

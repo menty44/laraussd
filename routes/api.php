@@ -38,5 +38,5 @@ Route::get('/balance','AccountsController@balance');
 // get list of balance by id
 Route::get('/balancebyid/{id}','AccountsController@balancebyid');
 
-// get list of balance by id
-Route::get('/deposit','AccountsController@depositstore');
+// deposit
+Route::post('/deposit','AccountsController@depositstore');
