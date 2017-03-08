@@ -212,4 +212,22 @@ public function testupdate($id)
               return $this->response->errorNotFound('Deposit not made, Excess Deposit amount ');
 
           }
+
+          public function withdrawal($id)
+          {
+
+            //$someJSON = DB::select('SELECT * FROM accounts WHERE balance = ?' , ['45']);
+            $someJSON = DB::select('SELECT balance FROM accounts WHERE id = ?',  [$id]);
+            // Convert JSON string to Array
+            $someArray = json_decode(json_encode($someJSON), true);
+            print_r($someArray);        // Dump all data of the Array
+            echo "";
+            echo "";
+            echo "";
+            echo $someArray[0]["balance"]; // Access Array data
+            //echo $someArray[0]["type"]; // Access Array data
+            //echo $someArray[0]["notransdep"]; // Access Array data
+
+
+          }
         }
