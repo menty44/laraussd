@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Author: oluoch
+ * URL: www.blaqueyard.com
+ * twitter: http://twitter.com/menty44
+ * fred.oluoch@blaqueyard.com
+ */
+
 namespace App\Transformer;
 
 class AccountTransformer {

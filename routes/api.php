@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * Author: oluoch
+ * URL: www.blaqueyard.com
+ * twitter: http://twitter.com/menty44
+ * fred.oluoch@blaqueyard.com
+ */
+
 use Illuminate\Http\Request;
 
 /*
@@ -13,25 +20,27 @@ use Illuminate\Http\Request;
 |
 */
 
-#developed by oluoch 0720106420
+#Developed by oluoch 0720106420
+
+#ByPass the authenticating middle for ease of testing
 
 // Route::get('/user', function (Request $request) {
 //     return $request->user();
 // })->middleware('auth:api');
 
-// get list of tasks
+// get list of accounts
 Route::get('/accounts','AccountsController@index');
 
-// get specific task
+// get specific accounts
 Route::get('/accounts/{id}','AccountsController@show');
 
-// delete a task
+// delete a accounts
 Route::delete('accounts/{id}','AccountsController@destroy');
 
-// update existing task
+// update existing accounts
 Route::put('accounts','AccountsController@store');
 
-// create new task
+// create new accounts
 Route::post('accounts','AccountsController@store');
 
 // get list of balance
@@ -55,5 +64,5 @@ Route::get('/test1/{id} ','AccountsController@test1');
 // deposit by id
 Route::put('/deposit/{id}','AccountsController@testupdate');
 
-//withdraw Withdrawal
+//withdraw by 1d
 Route::put('/withdrawal/{id}','AccountsController@withdrawal');
