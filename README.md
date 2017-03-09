@@ -269,10 +269,14 @@ N.B: for GET methods submit empty requests but for PUT methods please include a 
 
 #Screenshots for the tests are inside the folder called screenshot
 
-install phpunit and guzzle by issuing these commands on the linux terminal,
-composer require phpunit/phpunit ,
-composer require guzzlehttp/guzzle,
-composer update,
+install phpunit and guzzle by issuing these commands on the linux terminal;
+
+composer require phpunit/phpunit 
+
+composer require guzzlehttp/guzzle
+
+composer update
+
 
 For testing and run this command on the terminal ;
 
