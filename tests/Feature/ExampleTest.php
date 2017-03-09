@@ -1,24 +1,19 @@
 <?php
-
-declare(strict_types=1);
-
-use PHPUnit\Framework\TestCase;
-
+namespace Tests\Feature;
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-
-
 class ExampleTest extends TestCase
 {
     /**
-     * A basic functional test example.
+     * A basic test example.
      *
      * @return void
      */
-    public function testBasicExample()
+    public function testBasicTest()
     {
-        $this->visit('/')
-        ->see('Laravel 5');
+        $response = $this->get('/');
+        $response->assertStatus(200);
     }
 }

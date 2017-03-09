@@ -28,6 +28,9 @@ use Illuminate\Http\Request;
 //     return $request->user();
 // })->middleware('auth:api');
 
+//get home
+Route::get('/','AccountsController@welcome');
+
 // get list of accounts
 Route::get('/accounts','AccountsController@index');
 

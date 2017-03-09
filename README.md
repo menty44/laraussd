@@ -15,14 +15,15 @@
 *Type on the browser http://localhost/phpmyadmin  or http://127.0.0.1/phpmyadmin
 
 *Create database called bank and import the sql file inside the project in the folder called bankdb or on the
- mysql console you can run the below script;
+mysql console you can run the below script;
 
-//start script
- create database bank; 
+//start script;
 
- use bank;
+create database bank; 
 
- -- phpMyAdmin SQL Dump
+use bank;
+
+-- phpMyAdmin SQL Dump
 -- version 4.5.2
 -- http://www.phpmyadmin.net
 --
@@ -51,9 +52,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `account` (
-  `id` int(11) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `balance` varchar(255) NOT NULL
+`id` int(11) NOT NULL,
+`type` varchar(255) NOT NULL,
+`balance` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -63,14 +64,14 @@ CREATE TABLE `account` (
 --
 
 CREATE TABLE `accounts` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `balance` int(11) NOT NULL,
-  `notransdep` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `notranswith` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+`id` int(10) UNSIGNED NOT NULL,
+`name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+`type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+`balance` int(11) NOT NULL,
+`notransdep` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+`notranswith` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+`created_at` timestamp NULL DEFAULT NULL,
+`updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -88,9 +89,9 @@ INSERT INTO `accounts` (`id`, `name`, `type`, `balance`, `notransdep`, `notransw
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL
+`id` int(10) UNSIGNED NOT NULL,
+`migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+`batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -110,9 +111,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
+`email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+`token` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+`created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -122,9 +123,9 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `tasks` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+`id` int(10) UNSIGNED NOT NULL,
+`created_at` timestamp NULL DEFAULT NULL,
+`updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -134,13 +135,13 @@ CREATE TABLE `tasks` (
 --
 
 CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+`id` int(10) UNSIGNED NOT NULL,
+`name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+`email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+`password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+`remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+`created_at` timestamp NULL DEFAULT NULL,
+`updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -151,39 +152,39 @@ CREATE TABLE `users` (
 -- Indexes for table `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`id`);
+ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`id`);
+ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
-  ADD PRIMARY KEY (`id`);
+ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`),
-  ADD KEY `password_resets_token_index` (`token`);
+ADD KEY `password_resets_email_index` (`email`),
+ADD KEY `password_resets_token_index` (`token`);
 
 --
 -- Indexes for table `tasks`
 --
 ALTER TABLE `tasks`
-  ADD PRIMARY KEY (`id`);
+ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+ADD PRIMARY KEY (`id`),
+ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -193,33 +194,33 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
- //end script
+//end script
 
 
 
@@ -232,10 +233,10 @@ ALTER TABLE `users`
 *Then run in the cmd / terminal while in the project root this command php artisan serve 
 
 *If successful it will display this Laravel development server started on http://127.0.0.1:8000/ (The server is now up and 
- running)
+running)
 
 *On the browser you can use either of these urls to access the endpoints http://127.0.0.1:8000/   or 
- http://localhost/bankapi/bankapi/todo/public/
+http://localhost/bankapi/bankapi/todo/public/
 
 *If you are using google chrome browser install a plugin called Postman for testing the api endpoints
 
@@ -267,3 +268,16 @@ N.B: for GET methods submit empty requests but for PUT methods please include a 
 *change the balance amount for various responses as required
 
 #Screenshots for the tests are inside the folder called screenshot
+
+install phpunit and guzzle by issuing these commands on the linux terminal,
+composer require phpunit/phpunit ,
+composer require guzzlehttp/guzzle,
+composer update,
+
+For testing and run this command on the terminal ;
+
+./vendor/bin/phpunit --bootstrap src/Apis.php tests/ApisTest
+
+Screenshot for the api Results is included in the folder called screenshot (tests.png)
+
+
